@@ -12,13 +12,34 @@ public class Maximumdates {
 	public static void main(String[] args) {
 		
 		Maximumdates maxx = new Maximumdates();
-	
-		System.out.println("달을 입력 하시오");
 		Scanner scanner = new Scanner(System.in);
 		
-		int input_month = scanner.nextInt();
 		
-		System.out.println(input_month + "월의 날짜 수는 "+ maxx.maxDaysOfMonths(input_month)+"일 입니다");
+		System.out.println("반복 횟수를 력하세?");
+		int input_times = scanner.nextInt();
+		int times[] = new int[input_times];
+		
+		System.out.println("달을 입력 하시오");
+		for(int i = 0; i<input_times; i++) {
+		
+			times[i]= scanner.nextInt();
+		}
+		
+		for(int j = 0; j<input_times; j++) {
+		
+			System.out.println(times[j] + "월의 날짜 수는 "+ maxx.maxDaysOfMonths(times[j])+"일 입니다");
+		}
+		
+		
+		
+//		System.out.println("달을 입력 하시오");
+//		int input_month = scanner.nextInt();
+		
+		
+		
+		
+		
+		
 		
 		scanner.close();
 	}
