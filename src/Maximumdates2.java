@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Maximumdates2 {
 
+	private final static String PROMPT="cal>";
+	
 	private final int[] MONTHS={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
 	public int maxDaysOfMonths(int month) {
@@ -17,7 +19,8 @@ public class Maximumdates2 {
 		while(true) {
 		
 			System.out.println("달을 입력 하시오");
-			input_months = scanner.nextInt();
+//			System.outp
+//			input_months = scanner.nextInt();
 			
 			if (input_months == -1) {
 				break ;
