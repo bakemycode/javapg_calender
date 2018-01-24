@@ -2,24 +2,24 @@ import java.util.Scanner;
 
 public class Maximumdates {
 
-	public static void main(String args[]) {
+	private final int[] MONTHS={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	
+	public int maxDaysOfMonths(int month) {
+		 
+		return MONTHS[month - 1];
 		
-		int months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		}
+	public static void main(String[] args) {
 		
+		Maximumdates maxx = new Maximumdates();
+	
 		System.out.println("달을 입력 하시오");
 		Scanner scanner = new Scanner(System.in);
 		
-		String month;
-		month = scanner.nextLine();
+		int input_month = scanner.nextInt();
 		
-		int a;
-		
-		a = Integer.parseInt(month);
-		
-		System.out.println(months[a-1]);
+		System.out.println(input_month + "의 날짜 수는"+ maxx.maxDaysOfMonths(input_month)+"입니다");
 		
 		scanner.close();
-		
-		
 	}
 }
