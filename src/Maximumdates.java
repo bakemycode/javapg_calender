@@ -18,7 +18,7 @@ public class Maximumdates {
 		
 		int input_month = scanner.nextInt();
 		
-		System.out.println(input_month + "의 날짜 수는"+ maxx.maxDaysOfMonths(input_month)+"입니다");
+		System.out.println(input_month + "월의 날짜 수는 "+ maxx.maxDaysOfMonths(input_month)+"일 입니다");
 		
 		scanner.close();
 	}
