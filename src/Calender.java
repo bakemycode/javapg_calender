@@ -19,40 +19,50 @@ public class Calender {
 		return false;
 		}
 			
-	
-	public void makeCal(int years, int months, int day) {
-		System.out.printf("%4d년  %3d월 ",years, months);
-		System.out.println();
-		System.out.println(" SU MO TU WE TH FR SA");
-		System.out.println("---------------------");
-	
-		for(int j = 1; j <= day; j++) {
-			System.out.print("   ");
+	public int CalFirst(int year) {
+
+		int first_day = 0;
+		
+		System.out.println(year);
+		
+		int how_many_leeps = 0;
+		
+		for (int i = 0; i <= year; i++) {
+			if (i % 4 == 0 && i % 100 != 0 || (i % 100 == 0 && i % 400 == 0)) {
+				how_many_leeps += 1;
+				}	
 		}
-
-		for(int i = 1; i < (7+1) - day; i++ ) {	
-			
-			System.out.printf("%3d", i);
-			}
-		
-		System.out.println();
-		
-			
-		for(int i = 7 - day + 1; i < daysOfMonth(years, months) + 1; i++ ) {	
-
-			System.out.printf("%3d", i);
-			
-			if(day == 0) {
-				if(i % 7 == 0) {
-					System.out.println();
-				}
-			}
-			else if (day > 0) {
-				if(i % 7 == 7 - day)
-					System.out.println();
-				}
-			}
-		System.out.println();
+		System.out.println(how_many_leeps);
+		first_day = (how_many_leeps + year) % 7;
+		System.out.println(first_day);
+		return first_day;
 	}
-	}
+	
+	
+//	public void makeCal(int year, int month) {
+//		System.out.printf("%4d년  %3d월 ",year, month);
+//		System.out.println();
+//		System.out.println(" SU MO TU WE TH FR SA");
+//		System.out.println("---------------------");
+//		
+//		for(int i = 1; i <= CalFirst(year) - 1; i++) {
+//			System.out.printf("   ");
+//		}
+//		for(int i = 1; i < daysOfMonth(year, month) + 1; i++ ) {	
+//
+//			System.out.printf("%3d", i);
+//			if ((CalFirst(year) - 1) % 7 == 0) {
+//				if(i % 7 == 0) {
+//					System.out.println();
+//					}
+//			} else if ( (CalFirst(year) - 1) % 7 > 0) {
+//				if ( i % 7 == CalFirst(year)) {
+//					System.out.println();
+//				}
+//				}
+//		System.out.println();
+//	System.out.println();
+//	}
+//}
+}
 
