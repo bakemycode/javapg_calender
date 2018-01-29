@@ -1,3 +1,5 @@
+import java.io.*;
+
 
 import java.text.ParseException;
 import java.util.Scanner;
@@ -11,16 +13,18 @@ public class Prompt {
 		System.out.println("| 1. 일정 등록");
 		System.out.println("| 2. 일정 검색");
 		System.out.println("| 3. 달력 보기");
+		System.out.println("| 4. 저장 하기");
+		System.out.println("| 5. 불러 오기");
 		System.out.println("| q. 종료 ");
 		System.out.println("---------------------------------");
 	}
 
 	
-	public void registerPlan(Calendar cal, Scanner scanner) throws ParseException {
+	public void registerPlan(Calendar cal, Scanner scanner) throws ParseException, IOException {
 		
 		int exit;
 
-		while (true) {	// 이 부분에서 입력값 두 개를 각각 따로 받아야 하는데 하나만 작동
+		while (true) {	// 이 부분에서 입력값 두 개를 각각 따로 받아야 하는데 하나만 작동해서 영상에 나온 트릭 사용
 			System.out.println("[일정등록]");
 			System.out.println("날짜를 입력하세요 (yyyy-mm-dd)");
 			String date = scanner.next();
@@ -39,7 +43,7 @@ public class Prompt {
 		}
 	}
 
-	public void searchPlan(Calendar cal, Scanner scanner) throws ParseException {
+	public void searchPlan(Calendar cal, Scanner scanner) throws ParseException, IOException {
 		int exit;
 
 		while (true) {
@@ -56,7 +60,7 @@ public class Prompt {
 		}
 	}
 
-	public void checkCalendar(Calendar cal, Scanner scanner) throws ParseException {
+	public void checkCalendar(Calendar cal, Scanner scanner) throws ParseException, IOException {
 
 		int year = 2014; // 임의의 값
 		int month = 1; // 임의의 값
@@ -84,7 +88,26 @@ public class Prompt {
 		}
 	}
 
-	public void runPrompt() throws ParseException {
+	public void planSave(Calendar cal) throws IOException {
+		
+		FileWriter reader = new FileWriter("/Users/jun/eclipse-workspace/planlist.txt");
+	
+		reader.write(cal.registerPlan());
+		
+		reader.close();
+	}
+	
+	public void planLoad(Calendar cal) throws IOException{
+		FileReader reader = new FileReader("/Users/jun/eclipse-workspace/planlist.txt");
+		int ch;
+		while ((ch = reader.read()) != -1){
+			System.out.print((char)ch);
+		}
+		reader.close();
+		
+	}
+	
+	public void runPrompt() throws ParseException, IOException {
 
 		printMenu();
 		Calendar cal = new Calendar();
@@ -101,6 +124,10 @@ public class Prompt {
 					break;
 				case "3": checkCalendar(cal, scanner);
 					break;
+				case "4": planSave(cal);
+					break;
+				case "5": planLoad(cal);
+					break;
 				case "q": 
 					System.out.println("bye");
 					isLoop = false;
@@ -110,7 +137,7 @@ public class Prompt {
 		}
 	}
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, IOException {
 
 		Prompt p = new Prompt();
 		p.runPrompt();

@@ -11,6 +11,7 @@ public class Calendar {
 	private final int[] LEAP_YEARS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 	private HashMap<Date, String> planMap; // 잘모르겠
+	public char[] registerPlan; // 이클립스가 생성한거 왜 만든건지 모르겠
 
 	public Calendar() {
 		planMap = new HashMap<Date, String>();
@@ -77,13 +78,15 @@ public class Calendar {
 		System.out.println();
 	}
 
-	public void registerPlan(String strDate, String strPlan) throws ParseException {
+	public HashMap<Date, String> registerPlan(String strDate, String strPlan) throws ParseException {
 
 		// HashMap<String, String> map = new HashMap<String, String>();
 		// map.put(strDate, strPlan); 내가 생각했던 부분....인데
 
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
 		planMap.put(date, strPlan);
+		
+		return planMap;
 	}
 
 	public String searchPlan(String strDate) throws ParseException {
@@ -96,9 +99,9 @@ public class Calendar {
 		return plan;
 	}
 
-	public static void main(String[] args) throws ParseException {
-		Calendar cal = new Calendar();
-
-		cal.registerPlan("2012-02-02", "let's it beef");
-	}
+//	public static void main(String[] args) throws ParseException {
+//		Calendar cal = new Calendar();
+//
+//		cal.registerPlan("2012-02-02", "let's it beef");
+//	}
 }
