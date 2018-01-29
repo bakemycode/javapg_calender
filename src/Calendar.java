@@ -1,9 +1,20 @@
+
+//import java.util.HashMap;
+import java.util.Date;
 import java.util.HashMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Calendar {
 
 	private final int[] MONTHS = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private final int[] LEAP_YEARS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	private HashMap<Date, String> planMap; // 잘모르겠
+
+	public Calendar() {
+		planMap = new HashMap<Date, String>();
+	}
 
 	public int daysOfMonth(int year, int month) {
 
@@ -62,21 +73,32 @@ public class Calendar {
 
 			}
 		}
-		
+
 		System.out.println();
 	}
 
-	public void registerPlan(String strDate, String strPlan) {
-	
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		map.put(strDate, strPlan);
+	public void registerPlan(String strDate, String strPlan) throws ParseException {
+
+		// HashMap<String, String> map = new HashMap<String, String>();
+		// map.put(strDate, strPlan); 내가 생각했던 부분....인데
+
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+		planMap.put(date, strPlan);
 	}
-	
-	public void searchPlan(String strDate) {
-		
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		System.out.println(map.containsKey(strDate));
+
+	public String searchPlan(String strDate) throws ParseException {
+
+		// HashMap<String, String> map = new HashMap<String, String>();
+		// System.out.println(map.containsKey(strDate)); 이부분도내가생각한거
+
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+		String plan = planMap.get(date);
+		return plan;
+	}
+
+	public static void main(String[] args) throws ParseException {
+		Calendar cal = new Calendar();
+
+		cal.registerPlan("2012-02-02", "let's it beef");
 	}
 }

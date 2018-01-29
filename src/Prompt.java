@@ -1,4 +1,5 @@
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Prompt {
@@ -14,35 +15,36 @@ public class Prompt {
 		System.out.println("---------------------------------");
 	}
 
-	public void registerPlan(Calendar cal, Scanner scanner) {
+	public void registerPlan(Calendar cal, Scanner scanner) throws ParseException {
 		int exit;
-		
+
 		while (true) {
 			System.out.println("[일정등록]");
 			System.out.println("날짜를 입력하세요 (yyyy-mm-dd)");
-			String date = scanner.nextLine();
+			String date = scanner.next();
+			System.out.println();
 			
 			System.out.println("계획을 입력하세요");
 			String plan = scanner.nextLine();
 			cal.registerPlan(date, plan);
 			System.out.println("저장되었습니다.");
-			
+
 			System.out.println("메뉴로 돌아가려면 (-1)");
 			exit = scanner.nextInt();
 			if (exit == -1) {
 				runPrompt();
 			}
-		}	
+		}
 	}
-	
-	public void searchPlan(Calendar cal, Scanner scanner) {
+
+	public void searchPlan(Calendar cal, Scanner scanner) throws ParseException {
 		int exit;
-		
+
 		while (true) {
 			System.out.println("[일정검색]");
 			System.out.println("날짜를 입력하세요 (yyyy-mm-dd)");
-			String date = scanner.nextLine();
-		
+			String date = scanner.next();
+
 			cal.searchPlan(date);
 			System.out.println("메뉴로 돌아가려면 (-1)");
 			exit = scanner.nextInt();
@@ -51,11 +53,11 @@ public class Prompt {
 			}
 		}
 	}
-	
-	public void checkCalendar(Calendar cal, Scanner scanner) {
 
-		int year = 2014;		// 임의의 값  
-		int month = 1;		// 임의의 값 
+	public void checkCalendar(Calendar cal, Scanner scanner) throws ParseException {
+
+		int year = 2014; // 임의의 값
+		int month = 1; // 임의의 값
 
 		while (true) {
 
@@ -80,12 +82,12 @@ public class Prompt {
 		}
 	}
 
-	public void runPrompt() {
+	public void runPrompt() throws ParseException {
 
 		printMenu();
 		Calendar cal = new Calendar();
 		Scanner scanner = new Scanner(System.in);
-	
+
 		while (true) {
 
 			String cmd = scanner.next();
@@ -102,7 +104,7 @@ public class Prompt {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 
 		Prompt p = new Prompt();
 		p.runPrompt();
