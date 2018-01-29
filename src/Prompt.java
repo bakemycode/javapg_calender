@@ -15,10 +15,12 @@ public class Prompt {
 		System.out.println("---------------------------------");
 	}
 
+	
 	public void registerPlan(Calendar cal, Scanner scanner) throws ParseException {
+		
 		int exit;
 
-		while (true) {
+		while (true) {	// 이 부분에서 입력값 두 개를 각각 따로 받아야 하는데 하나만 작동
 			System.out.println("[일정등록]");
 			System.out.println("날짜를 입력하세요 (yyyy-mm-dd)");
 			String date = scanner.next();
@@ -87,20 +89,24 @@ public class Prompt {
 		printMenu();
 		Calendar cal = new Calendar();
 		Scanner scanner = new Scanner(System.in);
-
-		while (true) {
-
-			String cmd = scanner.next();
-			if (cmd.equals("1")) {
-				registerPlan(cal, scanner);
-			} else if (cmd.equals("2")) {
-				searchPlan(cal, scanner);
-			} else if (cmd.equals("3")) {
-				checkCalendar(cal, scanner);
-			} else if (cmd.equals("4")) {
-				System.out.println("Bye");
+		
+		boolean isLoop = true;
+		while (isLoop) {
+			System.out.println("실행할 메뉴의 버튼을 입력하세요");
+			String select_menu = scanner.next();
+			switch (select_menu) {
+				case "1": registerPlan(cal, scanner);
+					break;
+				case "2": searchPlan(cal, scanner);
+					break;
+				case "3": checkCalendar(cal, scanner);
+					break;
+				case "q": 
+					System.out.println("bye");
+					isLoop = false;
+					break;
+			
 			}
-
 		}
 	}
 
